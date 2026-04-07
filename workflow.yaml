@@ -1,0 +1,25 @@
+name: photo_culling
+
+triggers:
+  - type: folder_watch
+    path: ./RAW
+
+steps:
+  - name: run_culling
+    type: command
+    command: >
+      python main.py
+      --source ./RAW
+      --culled ./CULLED
+      --rejected ./REJECTED
+      --report ./cull_report.csv
+      --duplicate-threshold 7
+      --blur-threshold 85
+      --min-pixels 1000000
+      --underexposed 30
+      --overexposed 225
+      --top-per-day 6
+
+  - name: notify_done
+    type: log
+    message: "Culling complete. Review ./CULLED and see ./cull_report.csv for reasons."

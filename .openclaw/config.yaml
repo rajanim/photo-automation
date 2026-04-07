@@ -1,0 +1,56 @@
+openclaw:
+  version: "1.0"
+  name: "Photo Culling Automation"
+  description: "Automated photo culling with quality filtering, deduplication, and daily ranking"
+  
+  workflows:
+    - name: photo-culling
+      description: "Process RAW photos and cull to CULLED/REJECTED folders"
+      triggers:
+        - type: schedule
+          interval: "hourly"
+          description: "Run every hour"
+      
+      tasks:
+        - task_id: cull_photos
+          name: "Photo Culling Pipeline"
+          description: "Execute photo culling with all quality and deduplication checks"
+          command: "python main.py"
+          working_directory: "/Users/rmaski/Downloads/Photos-3-001/photo-automation"
+          parameters:
+            source: "./RAW"
+            culled: "./CULLED"
+            rejected: "./REJECTED"
+            report: "./cull_report.csv"
+            duplicate_threshold: 7
+            blur_threshold: 85
+            min_pixels: 1000000
+            underexposed: 30
+            overexposed: 225
+            top_per_day: 6
+          
+          outputs:
+            - path: "./CULLED"
+              description: "Best candidate images"
+            - path: "./REJECTED"
+              description: "Bad/redundant images"
+            - path: "./cull_report.csv"
+              description: "Decision audit report"
+          
+          error_handling:
+            on_failure: "log_and_continue"
+            retry_count: 1
+            timeout_seconds: 300
+      
+      notifications:
+        - type: log
+          level: info
+          on: ["success", "failure"]
+        - type: summary
+          on: "completion"
+          output: "./openclaw_logs/workflow_summary.json"
+  
+  logging:
+    level: "info"
+    output_dir: "./openclaw_logs"
+    keep_history: true
