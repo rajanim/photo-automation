@@ -1,0 +1,8 @@
+flask
+opencv-python
+rawpy
+numpy
+pillow
+imagehash
+schedule
+openclaw

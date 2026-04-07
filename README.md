@@ -1,5 +1,6 @@
 # Photo Automation Culling Workflow
 
+
 ## 1) Initial Prompt (What Was Requested)
 
 The initial request was to convert the photo selection process into an OpenClaw-style workflow that:
@@ -235,6 +236,10 @@ python run_openclaw_scheduler.py
 2026-04-05 05:52:25 - INFO - ✓ Photo culling scheduled to run every hour at :00 seconds
 2026-04-05 05:52:25 - INFO - Running initial culling task...
 ```
+
+## Demo
+
+Watch the workflow in action: [https://www.youtube.com/watch?v=zTYvNlcEjU0](https://www.youtube.com/watch?v=zTYvNlcEjU0)
 
 #### Common Issues and Solutions
 
