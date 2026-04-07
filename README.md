@@ -1,7 +1,7 @@
 # Photo Automation Culling Workflow
 
 
-## 1) Initial Prompt (What Was Requested)
+## 1) Introduction
 
 The initial request was to convert the photo selection process into an OpenClaw-style workflow that:
 
@@ -10,6 +10,9 @@ The initial request was to convert the photo selection process into an OpenClaw-
 - Leaves only the best candidate images for manual review
 
 A follow-up request asked to add a second-stage ranking so only top images per day are kept.
+
+## Demo
+Watch the workflow in action: https://www.youtube.com/watch?v=zTYvNlcEjU0
 
 ## 2) What Is Implemented
 
